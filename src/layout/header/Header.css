@@ -1,0 +1,16 @@
+
+
+.App > header {
+    background-color: darkgoldenrod;
+}
+  
+.header {
+    /* background-color: #282c34; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+
+

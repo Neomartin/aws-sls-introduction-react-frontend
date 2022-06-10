@@ -1,0 +1,23 @@
+.App {
+  text-align: center;
+}
+
+
+.App-link {
+  color: #61dafb;
+}
+
+.list-item {
+  list-style: none;
+}
+
+.header > nav > ul {
+  display: flex;
+  column-gap: 1rem;
+}
+
+.footer {
+  background-color: black;
+  padding: 3rem;
+  color: white;
+}
