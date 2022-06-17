@@ -17,3 +17,27 @@ code {
   color: white;
   padding: 2rem;
 }
+
+.ant-layout-header {
+  background-color: cornflowerblue;
+  height: 44px;
+  line-height: 44px;
+}
+.ant-layout-header nav ul {
+  display: flex;
+  column-gap: 0.5rem;
+}
+
+.ant-layout-content {
+  background-color: white;
+  min-height: calc(100vh - 184px);
+}
+
+.ant-layout-sider {
+  background-color: #333;
+  color: white;
+}
+
+.ant-layout-footer {
+  height: 140px;
+}

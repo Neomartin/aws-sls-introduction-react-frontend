@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import './Header.css'
-export const Header = () => {
+export const HeaderContent = () => {
 
     const links = [
         { view: 'Home', url: 'http://google.com.ar' },
@@ -11,23 +11,23 @@ export const Header = () => {
 
     return (
         <Fragment>
-            <header className="header">
-                <nav>
-                    <ul>
-                        {links.map(link => {
-                            return (
-                                <li className="list-item">
-                                    {link.view}
-                                </li>
-                            )
 
-                        })}
-                    </ul>
-                </nav>
-            </header>
-            <div>
-                SUB TITLE
-            </div>
+            <nav>
+                <ul>
+                    {links.map((link, i) => {
+                        return (
+                            <li key={i} className="list-item">
+                                {link.view}
+                            </li>
+                        )
+
+                    })}
+                </ul>
+                <div>
+                    SUB TITLE
+                </div>
+            </nav>
+
         </Fragment>
 
     )
