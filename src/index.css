@@ -41,3 +41,19 @@ code {
 .ant-layout-footer {
   height: 140px;
 }
+
+.current-user {
+  border: 2px solid deeppink;
+  background-color: aliceblue;
+  padding: 2rem 4rem;
+}
+
+.w-full {
+  width: 100%;
+}
+.user-icons-actions {
+  padding: .5rem 1rem;
+}
+.icon-without-border {
+  border: none;
+}

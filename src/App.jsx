@@ -12,7 +12,7 @@ import { Users } from './pages/Users/Users';
 
 const { Header, Footer, Sider, Content } = Layout;
 // const URL = `https://rc-newapp.herokuapp.com/api`;
-
+console.log(process)
 function App() {
   
   const title = 'MI JS CUSTOM 2';
@@ -28,8 +28,8 @@ function App() {
         <Layout>
           <Sider>Sidebar</Sider>
           <Content>
-            {/* <Main users={users} title={title} subtitle={subtitle} />  */}
-            {/* <Contact />   */}
+            {/* <Main title={title} subtitle={subtitle} /> 
+            <Contact />   */}
             <Users />
           </Content>
         </Layout>
