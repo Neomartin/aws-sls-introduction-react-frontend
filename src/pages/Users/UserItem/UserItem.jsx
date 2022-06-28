@@ -4,12 +4,7 @@ import { DeleteOutlined, EditOutlined, StarOutlined } from '@ant-design/icons';
 import Avatar from 'antd/lib/avatar/avatar';
 export const UserItem = ({ user, fnDelete }) => {
 
-    const deleteElement = (id) => {
-        // levantar modal
-    }
-    
     return (
-
         <List.Item>
             <Row className='w-full'>
                 <Col xs={24} lg={18}>
@@ -38,18 +33,9 @@ export const UserItem = ({ user, fnDelete }) => {
                             <Button className="icon-without-border" shape="circle" icon={<StarOutlined />} />
                             </Tooltip>
                         </Col>
-
-
                     </Row>
                 </Col>
             </Row>
-
         </List.Item>
-        // <div>
-        //     {user._id}
-        //     <h4 >{user.fullName}</h4>
-        //     <a href={`mailto:${user.email ?? 'noexiste'}`}>{user.email ?? 'noexiste'}</a>
-        //     <hr />
-        // </div>
     )
 }

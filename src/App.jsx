@@ -1,20 +1,24 @@
-
-import axios from 'axios';
-import { useEffect, useState, Fragment } from 'react'
-
-// import { Footer } from './layout/Footer/Footer'
 import { HeaderContent } from './layout/Header/Header'
-import { Main } from './pages/Main/Main';
 import { Layout } from 'antd';
 import './App.css'
-import { Contact } from './pages/Contact/Contact';
-import { Users } from './pages/Users/Users';
 
+// Pages components
+import { Contact } from './pages/Contact/Contact';
+import { Main } from './pages/Main/Main';
+import { Users } from './pages/Users/Users';
 const { Header, Footer, Sider, Content } = Layout;
-// const URL = `https://rc-newapp.herokuapp.com/api`;
-console.log(process)
+import { Routes, Route, Link } from "react-router-dom"
+import { NotFound } from './pages/NotFound/NotFound';
+import { Login } from './pages/Login/Login';
+import { Sidebar } from './layout/sidebar/Sidebar';
+import { PrivateRoute } from './routers/PrivateRoute';
+import { useState } from 'react';
+
+
 function App() {
-  
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
+
+
   const title = 'MI JS CUSTOM 2';
   const subtitle = 'Subtitle 243242';
 
@@ -26,11 +30,22 @@ function App() {
           <HeaderContent />
         </Header>
         <Layout>
-          <Sider>Sidebar</Sider>
+          <Sider>
+            <Sidebar />
+          </Sider>
           <Content>
-            {/* <Main title={title} subtitle={subtitle} /> 
-            <Contact />   */}
-            <Users />
+            <Routes>
+              <Route path='/' 
+                    element={<PrivateRoute><Main title={title} subtitle={subtitle} /></PrivateRoute>
+              } />
+              <Route path='users' element={<PrivateRoute> <Users/> </PrivateRoute>} />
+              <Route path='contact' element={<Contact />} />
+              <Route path='login' element={<Login /> } />
+              <Route path='*' element={<PrivateRoute><NotFound /></PrivateRoute> } />
+            </Routes>
+            
+            
+            {/* <Users /> */}
           </Content>
         </Layout>
         <Footer>Footer</Footer>

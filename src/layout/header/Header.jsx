@@ -12,20 +12,8 @@ export const HeaderContent = () => {
     return (
         <Fragment>
 
-            <nav>
-                <ul>
-                    {links.map((link, i) => {
-                        return (
-                            <li key={i} className="list-item">
-                                {link.view}
-                            </li>
-                        )
-
-                    })}
-                </ul>
-                <div>
-                    SUB TITLE
-                </div>
+            <nav style={{ width: '100%', textAlign: 'left' }}>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TV_2015.png" alt="" height={40}/>
             </nav>
 
         </Fragment>

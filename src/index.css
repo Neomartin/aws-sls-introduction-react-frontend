@@ -57,3 +57,13 @@ code {
 .icon-without-border {
   border: none;
 }
+
+.navlink-active {
+  background-color: rgb(67, 67, 67);
+  display: block;
+}
+
+.navlink-active .ant-list-item-meta-title {
+  /* text-align: left; */
+  color: #48a2de;
+}
