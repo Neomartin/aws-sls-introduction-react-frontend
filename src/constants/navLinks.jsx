@@ -2,7 +2,7 @@ export const navLinksConst = [
     {
         title: 'Principal',
         path: '/',
-        protected: false
+        protected: true
     },
     {
         title: 'Usuarios',
@@ -17,11 +17,11 @@ export const navLinksConst = [
     {
         title: 'Contacto',
         path: '/contact',
-        protected: true
+        protected: false
     },
     {
         title: 'Not Fount',
         path: '/dasds',
-        protected: false
+        protected: true
     },
 ];  

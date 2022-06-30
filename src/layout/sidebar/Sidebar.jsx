@@ -5,7 +5,7 @@ import { navLinksConst } from "../../constants/navLinks"
 
 export const Sidebar = () => {
 
-    const currentUser = null
+    const currentUser = JSON.parse(localStorage.getItem('user'))
 
     return (
         <>
