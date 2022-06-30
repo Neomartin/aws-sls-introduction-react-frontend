@@ -2,7 +2,7 @@ import { List } from 'antd';
 import React from 'react'
 import { UserItem } from '../UserItem/UserItem';
 
-export const UsersList = ({users, funcionDeBorrar}) => {
+export const UsersList = ({users, funcionDeBorrar, editUser}) => {
     return (
 
 
@@ -12,7 +12,7 @@ export const UsersList = ({users, funcionDeBorrar}) => {
             <List
                 itemLayout="horizontal"
                 dataSource={users}
-                renderItem={usr => <UserItem user={usr} fnDelete={funcionDeBorrar} />}
+                renderItem={usr => <UserItem user={usr} fnDelete={funcionDeBorrar} editUser={editUser} />}
             />
 
 

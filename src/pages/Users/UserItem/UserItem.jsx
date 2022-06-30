@@ -2,7 +2,8 @@ import React from 'react'
 import { List, Tooltip, Button, Space, Row, Col } from 'antd';
 import { DeleteOutlined, EditOutlined, StarOutlined } from '@ant-design/icons';
 import Avatar from 'antd/lib/avatar/avatar';
-export const UserItem = ({ user, fnDelete }) => {
+import { useEffect } from 'react';
+export const UserItem = ({ user, fnDelete, editUser }) => {
 
     return (
         <List.Item>
@@ -24,8 +25,8 @@ export const UserItem = ({ user, fnDelete }) => {
                         </Col>
                         
                         <Col  lg={8}>
-                            <Tooltip title="search">
-                                <Button shape="circle" icon={<EditOutlined />} />
+                            <Tooltip title="Editar">
+                                <Button shape="circle" icon={<EditOutlined />} onClick={() => editUser(user._id)} />
                             </Tooltip>
                         </Col>
                         <Col  lg={8}>

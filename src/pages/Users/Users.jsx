@@ -3,6 +3,7 @@ import axios from 'axios'
 import { UsersList } from './UsersList/UsersList';
 import { UsersResume } from './UsersResume/UsersResume';
 import { notification } from 'antd';
+import { UserEdit } from './UserEdit/UserEdit';
 
 const URL = `http://localhost:3400/api`;
 
@@ -10,6 +11,7 @@ const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjhkNmZlNGUyMDc5
 
 export const Users = () => {
     const [users, setUsers] = useState([])
+    const [user, setUser] = useState(null)
     const [total, setTotal] = useState(0)
     const headers = {
         Authorization: token  //localStorage.getItem(`token`)
@@ -69,6 +71,16 @@ export const Users = () => {
         });
     };
 
+    const editUser = (id) => {
+        console.log(`Editar usuario`, id);
+        setUser(users.find(u => u._id === id));
+
+    }
+
+    useEffect(() => {
+
+    }, [user])
+
     return (
         <div>
             <h1>USERS COMPONENT</h1>
@@ -78,9 +90,9 @@ export const Users = () => {
                 <strong>email:</strong> { users.length === 0 ? 'Unknown' : users[0].email}
             </div>
             {/* Esto debería ser un componente aparte */}
-            <UsersList users={users} funcionDeBorrar={deleteUser}  />
+            <UsersList users={users} funcionDeBorrar={deleteUser} editUser={editUser} />
             <UsersResume users={users} total={total} />
-
+            {user ? <UserEdit user={user} /> : null}
 
 
 
