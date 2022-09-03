@@ -15,6 +15,11 @@ export const navLinksConst = [
         protected: false
     },
     {
+        title: 'Register',
+        path: '/register',
+        protected: false
+    },
+    {
         title: 'Contacto',
         path: '/contact',
         protected: false
@@ -24,4 +29,8 @@ export const navLinksConst = [
         path: '/dasds',
         protected: true
     },
+    {
+        title: 'Logout',
+        action: 'action',
+    }
 ];  

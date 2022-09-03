@@ -1,0 +1,9 @@
+.users-table-id-column {
+    width: 100px;
+    font-size: .675rem;
+    color: #666;
+}
+
+button:not(:last-child) {
+    margin-right: .25rem;
+}

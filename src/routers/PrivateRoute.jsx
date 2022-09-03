@@ -1,11 +1,13 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
+import { useAuth } from '../services/Auth/AuthContext';
 
 export const PrivateRoute = ({ children }) => {
 
-  const user = JSON.parse(localStorage.getItem('user'));
+  const auth = useAuth()
+  // console.log(`getSessionIsValid: `, auth.getSessionIsValid())
 
   return (
-    user ? children : <Navigate to='/login' replace />
+    auth?.getSessionIsValid() ? children : <Navigate to='/login' replace />
   )
 }

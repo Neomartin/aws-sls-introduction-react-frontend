@@ -1,14 +1,24 @@
-import { Button, Col, Form, Input, Row, Space, notification } from 'antd'
+import { Button, Col, Form, Input, Row, Space, notification, Modal } from 'antd'
 import axios from 'axios'
 import React, { useState } from 'react'
-// import { useRef } from 'react';
-// import { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
+import { ConfirmUser } from '../../components/ConfirmUser/ConfirmUser'
+import { Register } from '../../components/Register/register'
+import { useAuth } from '../../services/Auth/AuthContext'
+import { UsersTable } from './UsersTable/UsersTable'
 
-const URL = `http://localhost:3400/api`
+const URL = `http://localhost:3400/api`;
 
 export const Login = () => {
-  const [user, setUser] = useState(null)
-
+  const [user, setUser] = useState(null);
+  const [modalContent, setModalContent] = useState(null);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const auth = useAuth();
+  const navigate = useNavigate()
+  const setModalVisible = (value, modalContent) => {
+    setIsModalVisible(value);
+    setModalContent(modalContent);
+  }
   const openNotification = (message, description, type) => {
     notification[type]({
       message: message,
@@ -19,50 +29,66 @@ export const Login = () => {
 
   const handleSubmitFinish = async (formData) => {
     try {
-      // const loginData = values;
-      const response = await axios.post(`${URL}/login`, formData );
-      console.log(response);
-      const user = response.data.user;
-      const token = response.data.token;
-      localStorage.setItem('user', JSON.stringify(user));
-      localStorage.setItem('token', token)
-      setUser(user);
-      openNotification(`Login correcto`, `Login correctisimo dsadasdsa das`, 'success')
+      auth.login(formData);
+      // openNotification(`Login correcto`, `Login correctisimo dsadasdsa das`, 'success');
+      // navigate('/', { replace: true })
     } catch (error) {
-      openNotification(`Login incorrecto`, `No se pudo loguear`, 'error') 
+      openNotification(`Login incorrecto`, `No se pudo loguear`, 'error')
     }
-    
+  }
+
+  const registerUser = async (formData) => {
+    try {
+      setModalVisible(false);
+      const resp = await axios.post(`https://j0w24jl69b.execute-api.us-east-1.amazonaws.com/dev/api/test`, formData, {
+        headers: {
+          Authorization: auth.token
+        }
+      });
+      console.log(resp)
+    } catch (error) {
+      console.log(error)
+    }
 
   }
 
-  
-
   return (
     <>
-    <Row justify='center' className='p-lg'>
-      <Col span={16}>
+      <Row justify='center' className='p-lg'>
+        <Col span={16}>
 
-      <Form labelCol={{ span: 8 }} wrapperCol={{ span: 16 }} onFinish={handleSubmitFinish}>
-        <Form.Item label='Correo Electrónico' name='email' rules={[
-          { required: true, message: 'El email es requerido' },
-          { min: 3, message: `La longitud debe ser de al menos 3 caracteres`},
-          { type: 'email', message: `El correo debe ser válido`},
-        ]}>
-          <Input type='email' minLength={3}/>
-        </Form.Item>
-        <Form.Item label='Contraseña'name='password'>
-          <Input type='password' />
-        </Form.Item>
+          <Form labelCol={{ span: 8 }} wrapperCol={{ span: 16 }} onFinish={handleSubmitFinish}>
+            <Form.Item label='Correo Electrónico' name='Username' rules={[
+              { required: true, message: 'El email es requerido' },
+              { min: 3, message: `La longitud debe ser de al menos 3 caracteres` },
+              // { type: 'email', message: `El correo debe ser válido` },
+            ]}>
+              <Input minLength={3} />
+            </Form.Item>
+            <Form.Item label='Contraseña' name='Password'>
+              <Input type='password' />
+            </Form.Item>
 
-        <Form.Item wrapperCol={{ span: 8, offset: 16 }}>
-          <Button htmlType='submit' type='primary'>
-            Ingresar
-          </Button>
-        </Form.Item>
-      </Form>
-      </Col>
-    </Row>
-      
+            <Form.Item wrapperCol={{ span: 8, offset: 16 }}>
+              <Button htmlType='submit' type='primary'>
+                Ingresar
+              </Button>
+            </Form.Item>
+          </Form>
+        </Col>
+      </Row>
+      <Space size={'middle'}>
+        
+        <a type='secondary' onClick={() => setModalVisible(true, 'confirmUser')}>Confirmar Usuario</a>
+        <a type='secondary' onClick={() => setModalVisible(true, 'register')}>
+          Registrar!
+        </a>
+      </Space>
+      <Modal title="Basic Modal" visible={isModalVisible} onCancel={() => setModalVisible(false)}>
+        {modalContent === 'register' && <Register onCancel={setModalVisible} registerUser={registerUser} modal={true} />}
+        {modalContent === 'confirmUser' && <ConfirmUser />}
+      </Modal>
+     
     </>
   )
 }
@@ -192,7 +218,6 @@ export const Login = () => {
 //                 {/* <Input type="text" /> */}
 //                 <input type="email" name='email' />
 //               </Col>
-
 //               <Col xs={24} className='mb-lg'>
 //                 <label>Contraseña</label> <br />
 //                 {/* <Input type="password" /> */}

@@ -6,8 +6,12 @@
 .App-link {
   color: #61dafb;
 }
-
-
+.navlink-active .ant-list-item-meta-title {
+  color: dodgerblue !important;
+}
+.ant-list-item-meta-title {
+  color: white !important;
+}
 
 .list-item {
   list-style: none;

@@ -13,6 +13,9 @@ import { Login } from './pages/Login/Login';
 import { Sidebar } from './layout/sidebar/Sidebar';
 import { PrivateRoute } from './routers/PrivateRoute';
 import { useState } from 'react';
+import { CountProvider } from './services/Auth/AuthContext';
+import { User } from './pages/User/User';
+import { Register } from './components/Register/register';
 
 
 function App() {
@@ -24,33 +27,37 @@ function App() {
 
 
   return (
-    <div className="App">
-      <Layout>
-        <Header>
-          <HeaderContent />
-        </Header>
+    <CountProvider>
+      <div className="App">
         <Layout>
-          <Sider>
-            <Sidebar />
-          </Sider>
-          <Content>
-            <Routes>
-              <Route path='/' 
-                    element={<PrivateRoute><Main title={title} subtitle={subtitle} /></PrivateRoute>
-              } />
-              <Route path='users' element={<PrivateRoute> <Users/> </PrivateRoute>} />
-              <Route path='contact' element={<Contact />} />
-              <Route path='login' element={<Login /> } />
-              <Route path='*' element={<PrivateRoute><NotFound /></PrivateRoute> } />
-            </Routes>
-            
-            
-            {/* <Users /> */}
-          </Content>
+          <Header>
+            <HeaderContent />
+          </Header>
+          <Layout>
+            <Sider>
+              <Sidebar />
+            </Sider>
+            <Content>
+              <Routes>
+                <Route path='/'
+                  element={<PrivateRoute><Main title={title} subtitle={subtitle} /></PrivateRoute>
+                  } />
+                <Route path='users' exact element={<PrivateRoute> <Users /> </PrivateRoute>} />
+                <Route path='contact' element={<Contact />} />
+                <Route path='login' element={<Login />} />
+                <Route path='register' element={<Register />} />
+                <Route path='user/:id/:at' element={<User />} />
+                <Route path='*' element={<PrivateRoute><NotFound /></PrivateRoute>} />
+              </Routes>
+
+
+              {/* <Users /> */}
+            </Content>
+          </Layout>
+          <Footer>Footer</Footer>
         </Layout>
-        <Footer>Footer</Footer>
-      </Layout>
-    </div>
+      </div>
+    </CountProvider>
   )
 }
 

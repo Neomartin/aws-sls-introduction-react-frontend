@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "4.0.0",
+    "amazon-cognito-identity-js": "^5.2.10",
     "antd": "^4.21.2",
     "axios": "^0.27.2",
     "react": "^18.0.0",

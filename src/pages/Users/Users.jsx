@@ -4,6 +4,7 @@ import { UsersList } from './UsersList/UsersList';
 import { UsersResume } from './UsersResume/UsersResume';
 import { notification } from 'antd';
 import { UserEdit } from './UserEdit/UserEdit';
+import { UsersTable } from '../Login/UsersTable/UsersTable';
 
 const URL = `http://localhost:3400/api`;
 
@@ -90,7 +91,8 @@ export const Users = () => {
                 <strong>email:</strong> { users.length === 0 ? 'Unknown' : users[0].email}
             </div>
             {/* Esto debería ser un componente aparte */}
-            <UsersList users={users} funcionDeBorrar={deleteUser} editUser={editUser} />
+            <UsersTable></UsersTable>
+            {/* <UsersList users={users} funcionDeBorrar={deleteUser} editUser={editUser} /> */}
             <UsersResume users={users} total={total} />
             {user ? <UserEdit user={user} /> : null}
 
